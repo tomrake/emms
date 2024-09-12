@@ -27,6 +27,8 @@
 (require 'emms-compat)
 (require 'emms-player-simple)
 
+(defvar emms-player-vlc-parameters '("--intf=rc"))
+
 ;; I use this macro, and later override some of the stuff it defines
 ;; in order to accomodate VLC's particular idioms.
 (define-emms-simple-player vlc '(file url)
