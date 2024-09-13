@@ -48,15 +48,15 @@
   "\\`http[s]?://"
   "vlc" "--intf=rc")
 
-;; On Windows when a file path is converted into a string to process and then
-;; vlc is gets mangled. To fix this I add "file://" in front of the file path.
+;; On Windows when a emacs style path string is needed for vlc command line
+;; The path separators should be \ and that is \\ in an emacs string.
+;; This function does that conversion.
 
 (defun windows-vlc-filter (track) 
   (let ((name (emms-track-name track)))
-    (message name)
     (cond
      ((eq 'file (emms-track-type track))
-      (concat "file:///" name))
+      (string-join (split-string name "/") "\\"))
      (t name))))
 
 ;; (kludge) By default, VLC does not quit after finishing to play a
